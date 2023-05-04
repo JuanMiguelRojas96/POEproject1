@@ -70,7 +70,11 @@ public class GeeksOutMasterGUI extends JFrame{
     panelDadosActivos.setBorder(BorderFactory.createTitledBorder(null ,"Dados Activos", TitledBorder.CENTER,
         TitledBorder.DEFAULT_JUSTIFICATION , new Font("Arial",Font.PLAIN,14),Color.BLACK));
     setGridConstraint(panelDadosActivos,0,2,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
-
+    /*ImageIcon background = new ImageIcon("/resources/SuperHeroe.PNG");
+    JLabel backgroundLabel = new JLabel(background);
+    backgroundLabel.setPreferredSize(new Dimension(panelDadosActivos.getWidth(),panelDadosActivos.getHeight()));
+    backgroundLabel.setMaximumSize(new Dimension(panelDadosActivos.getWidth(),panelDadosActivos.getHeight()));
+    panelDadosActivos.add(backgroundLabel);*/
 
     dados = new ArrayList<JLabel>();
     imageDado = new ImageIcon(getClass().getResource("/resources/SuperHeroe.PNG"));
