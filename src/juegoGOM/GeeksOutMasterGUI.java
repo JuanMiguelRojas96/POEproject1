@@ -70,14 +70,10 @@ public class GeeksOutMasterGUI extends JFrame{
     panelDadosActivos = new PanelImageFondo(setImageBackground("/resources/mesa.jpg"));
     panelDadosActivos.setName("panelDadosActivos");
     panelDadosActivos.setPreferredSize(new Dimension(600,300));
-    panelDadosActivos.setBorder(BorderFactory.createTitledBorder(null ,"Dados Activos", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Arial",Font.PLAIN,14),Color.BLACK));
+    panelDadosActivos.setBorder(BorderFactory.createTitledBorder(null ,"DADOS ACTIVOS", TitledBorder.CENTER,
+        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
     setGridConstraint(panelDadosActivos,0,2,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
-    /*ImageIcon background = new ImageIcon("/resources/SuperHeroe.PNG");
-    JLabel backgroundLabel = new JLabel(background);
-    backgroundLabel.setPreferredSize(new Dimension(panelDadosActivos.getWidth(),panelDadosActivos.getHeight()));
-    backgroundLabel.setMaximumSize(new Dimension(panelDadosActivos.getWidth(),panelDadosActivos.getHeight()));
-    panelDadosActivos.add(backgroundLabel);*/
+
 
     dados = new ArrayList<JLabel>();
     imageDado = new ImageIcon(getClass().getResource("/resources/SuperHeroe.PNG"));
@@ -89,26 +85,25 @@ public class GeeksOutMasterGUI extends JFrame{
     panelTarjetaPuntuacion = new PanelImageFondo(setImageBackground("/resources/tarjetonPuntaje.jpg"));
     panelTarjetaPuntuacion.setName("panelTarjetaPuntuacion");
     panelTarjetaPuntuacion.setPreferredSize(new Dimension(600,300));
-    panelTarjetaPuntuacion.setBorder(BorderFactory.createTitledBorder(null ,"Tarjeta de Puntuación", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Arial",Font.PLAIN,14),Color.BLACK));
+    panelTarjetaPuntuacion.setBorder(BorderFactory.createTitledBorder(null ,"TARJETA DE PUNTUACIÓN", TitledBorder.CENTER,
+        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
     setGridConstraint(panelTarjetaPuntuacion,1,2,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
 
     panelDadosInactivos = new PanelImageFondo(setImageBackground("/resources/dadosInactivos.jpg"));
     panelDadosInactivos.setName("panelDadosInactivos");
     panelDadosInactivos.setPreferredSize(new Dimension(600,300));
-    panelDadosInactivos.setBorder(BorderFactory.createTitledBorder(null ,"Dados Inactivos", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Arial",Font.PLAIN,14),Color.BLACK));
+    panelDadosInactivos.setBorder(BorderFactory.createTitledBorder(null ,"DADOS INACTIVOS", TitledBorder.CENTER,
+        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
     setGridConstraint(panelDadosInactivos,0,3,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
     for (int i = 7;i<10;i++){
       dados.add(new JLabel(imageDado));
       panelDadosInactivos.add(dados.get(i));
     }
     panelDadosUsados = new PanelImageFondo(setImageBackground("/resources/dadosUsados.jpg"));
-    //panelDadosUsados = new JPanel();
     panelDadosUsados.setName("panelDadosUsados");
     panelDadosUsados.setPreferredSize(new Dimension(600,300));
-    panelDadosUsados.setBorder(BorderFactory.createTitledBorder(null ,"Dados Usados", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Arial",Font.PLAIN,14),Color.BLACK));
+    panelDadosUsados.setBorder(BorderFactory.createTitledBorder(null ,"DADOS USADOS", TitledBorder.CENTER,
+        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
     setGridConstraint(panelDadosUsados,1,3,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
 
 
