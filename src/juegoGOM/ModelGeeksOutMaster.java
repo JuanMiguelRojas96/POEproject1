@@ -97,8 +97,10 @@ public class ModelGeeksOutMaster {
   }
 
   public void moverDados(MouseEvent e,JPanel actualContenedor,JPanel nuevoContenedor){
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.anchor = GridBagConstraints.CENTER;
     actualContenedor.remove(e.getComponent());
-    nuevoContenedor.add(e.getComponent());
+    nuevoContenedor.add(e.getComponent(),gbc);
     actualContenedor.revalidate();
     actualContenedor.repaint();
     nuevoContenedor.revalidate();

@@ -2,6 +2,7 @@ package juegoGOM;
 
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -73,38 +74,43 @@ public class GeeksOutMasterGUI extends JFrame{
     panelDadosActivos.setBorder(BorderFactory.createTitledBorder(null ,"DADOS ACTIVOS", TitledBorder.CENTER,
         TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
     setGridConstraint(panelDadosActivos,0,2,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
+    panelDadosActivos.setLayout(new GridBagLayout());
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.anchor=GridBagConstraints.CENTER;
+
 
 
     dados = new ArrayList<JLabel>();
     imageDado = new ImageIcon(getClass().getResource("/resources/SuperHeroe.PNG"));
     for (int i = 0;i<7;i++){
       dados.add(new JLabel(imageDado));
-      panelDadosActivos.add(dados.get(i));
+      panelDadosActivos.add(dados.get(i),gbc);
     }
 
     panelTarjetaPuntuacion = new PanelImageFondo(setImageBackground("/resources/tarjetonPuntaje.jpg"));
     panelTarjetaPuntuacion.setName("panelTarjetaPuntuacion");
     panelTarjetaPuntuacion.setPreferredSize(new Dimension(600,300));
-    panelTarjetaPuntuacion.setBorder(BorderFactory.createTitledBorder(null ,"TARJETA DE PUNTUACIÓN", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
+    panelTarjetaPuntuacion.setBorder(new LineBorder(Color.WHITE, 3));
     setGridConstraint(panelTarjetaPuntuacion,1,2,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
 
     panelDadosInactivos = new PanelImageFondo(setImageBackground("/resources/dadosInactivos.jpg"));
     panelDadosInactivos.setName("panelDadosInactivos");
     panelDadosInactivos.setPreferredSize(new Dimension(600,300));
-    panelDadosInactivos.setBorder(BorderFactory.createTitledBorder(null ,"DADOS INACTIVOS", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
+    panelDadosInactivos.setBorder(new LineBorder(Color.WHITE, 3));
     setGridConstraint(panelDadosInactivos,0,3,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
+    panelDadosInactivos.setLayout(new GridBagLayout());
+
+
     for (int i = 7;i<10;i++){
       dados.add(new JLabel(imageDado));
-      panelDadosInactivos.add(dados.get(i));
+      panelDadosInactivos.add(dados.get(i),gbc);
     }
     panelDadosUsados = new PanelImageFondo(setImageBackground("/resources/dadosUsados.jpg"));
     panelDadosUsados.setName("panelDadosUsados");
     panelDadosUsados.setPreferredSize(new Dimension(600,300));
-    panelDadosUsados.setBorder(BorderFactory.createTitledBorder(null ,"DADOS USADOS", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
+    panelDadosUsados.setBorder(new LineBorder(Color.WHITE,3));
     setGridConstraint(panelDadosUsados,1,3,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
+    panelDadosUsados.setLayout(new GridBagLayout());
 
 
     for(int i=0;i<dados.size();i++){
