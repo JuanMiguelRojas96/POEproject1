@@ -180,7 +180,6 @@ public class GeeksOutMasterGUI extends JFrame{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      System.out.println(e.getComponent().getName());
       if(modelGeeksOutMaster.getFlag()==0){
         JOptionPane.showMessageDialog(null,"Debes de Lanzar Los Dados Primero","¡A Lanzar Los Dados",JOptionPane.INFORMATION_MESSAGE);
       }
@@ -195,6 +194,9 @@ public class GeeksOutMasterGUI extends JFrame{
         modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
       }
       if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==3){
+        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
+      }
+      if (getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==4){
         modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
       }
       if (getPanelDado(e.getComponent())=="panelDadosInactivos" && modelGeeksOutMaster.getFlag()==5){

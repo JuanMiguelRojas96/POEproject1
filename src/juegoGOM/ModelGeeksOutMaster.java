@@ -62,7 +62,8 @@ public class ModelGeeksOutMaster {
       }
       if (e.getComponent().getName() == "Corazon") {
         if (panelDadosInactivos.getComponentCount() == 0) {
-          JOptionPane.showMessageDialog(null, "Como escogiste un Corazón y el Panel de Dados Inactivos está vacio, no tiene ningun efecto", "¡Está Vacio", JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.showMessageDialog(null, "Como escogiste un Corazón y el Panel de Dados Inactivos " +
+              "está vacio, no tiene ningun efecto", "¡Está Vacio", JOptionPane.INFORMATION_MESSAGE);
           moverDados(e, panelDadosActivos, panelDadosUsados);
           dadoPoder = e.getComponent().getName();
           flag = 1;
@@ -92,6 +93,21 @@ public class ModelGeeksOutMaster {
 
     }
     if (dadoPoder=="SuperHeroe" && flag==4 ){
+      switch (e.getComponent().getName()){
+        case "Meeple":setContraparte(e,"Nave");
+          break;
+        case "Nave":setContraparte(e,"Meeple");
+          break;
+        case "SuperHeroe":setContraparte(e,"Dragon");
+          break;
+        case "Dragon":setContraparte(e,"SuperHeroe");
+          break;
+        case "Corazon":setContraparte(e,"42");
+          break;
+        case "42":setContraparte(e,"Corazon");
+          break;
+
+      }
       flag = 1;
 
     }
@@ -103,7 +119,11 @@ public class ModelGeeksOutMaster {
   }
 
 
-
+  public void setContraparte(MouseEvent e,String caraOpuesta){
+    e.getComponent().setName(caraOpuesta);
+    ImageIcon imageDado = new ImageIcon(getClass().getResource("/resources/"+caraOpuesta+".png"));
+    ((JLabel) e.getSource()).setIcon(imageDado);
+  }
   public void moverDados(MouseEvent e,JPanel actualContenedor,JPanel nuevoContenedor){
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.anchor = GridBagConstraints.CENTER;
