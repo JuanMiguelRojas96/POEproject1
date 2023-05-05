@@ -34,7 +34,7 @@ public class ModelGeeksOutMaster {
   /**
    * flag=
    * 0 = No se han tirado los dados
-   * 1 = primero Tiro
+   * 1 = Tiro escoge poder
    * 2 = poder Meeple
    * 3 = poder Nave
    * 4 = poder SuperHeroe
@@ -78,6 +78,11 @@ public class ModelGeeksOutMaster {
 
   public void estadoPoder(MouseEvent e,JPanel panelDadosActivos,JPanel panelDadosUsados,JPanel panelDadosInactivos,JPanel panelTarjetaPuntuacion){
     if (dadoPoder=="Meeple" && flag==2 ){
+      Dado dadoMeeple = new Dado();
+      String caraDado = dadoMeeple.getCara();
+      e.getComponent().setName(caraDado);
+      ImageIcon imageDado = new ImageIcon(getClass().getResource("/resources/" + caraDado + ".png"));
+      ((JLabel) e.getSource()).setIcon(imageDado);
       flag = 1;
     }
 
@@ -87,6 +92,7 @@ public class ModelGeeksOutMaster {
 
     }
     if (dadoPoder=="SuperHeroe" && flag==4 ){
+      flag = 1;
 
     }
     if (dadoPoder=="Corazon" && flag==5 ){
@@ -95,6 +101,8 @@ public class ModelGeeksOutMaster {
 
     }
   }
+
+
 
   public void moverDados(MouseEvent e,JPanel actualContenedor,JPanel nuevoContenedor){
     GridBagConstraints gbc = new GridBagConstraints();
@@ -122,6 +130,9 @@ public class ModelGeeksOutMaster {
 
   public int getFlag() {
     return flag;
+  }
+  public void setFlag(int i){
+    flag = i;
   }
 
   public String getDadoPoder(){
