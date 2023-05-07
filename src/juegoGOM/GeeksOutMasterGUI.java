@@ -103,6 +103,8 @@ public class GeeksOutMasterGUI extends JFrame{
 
     for (int i = 7;i<10;i++){
       dados.add(new JLabel(imageDado));
+      panelDadosInactivos.add(dados.get(i));
+      dados.get(i).setName("SuperHeroe");
       panelDadosInactivos.add(dados.get(i),gbc);
     }
     panelDadosUsados = new PanelImageFondo(setImageBackground("/resources/dadosUsados.jpg"));
@@ -137,6 +139,8 @@ public class GeeksOutMasterGUI extends JFrame{
   }
 
 
+
+
   public void lanzarDadosActivos(){
     modelGeeksOutMaster.lanzarDados();
     ArrayList<String> caras = modelGeeksOutMaster.getCaras();
@@ -148,7 +152,6 @@ public class GeeksOutMasterGUI extends JFrame{
       }
     }
   }
-
 
 
   public String getPanelDado(Component dado) {
@@ -187,10 +190,13 @@ public class GeeksOutMasterGUI extends JFrame{
                 "Por Favor Selecciona Otro.","¡Cara Sin Habilidad!",JOptionPane.INFORMATION_MESSAGE);
         }
       }
-      if(getPanelDado(e.getComponent())=="panelActivos" && modelGeeksOutMaster.getFlag()==2){
+      if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==2){
         modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
       }
       if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==3){
+        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
+      }
+      if (getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==4){
         modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
       }
       if (getPanelDado(e.getComponent())=="panelDadosInactivos" && modelGeeksOutMaster.getFlag()==5){
