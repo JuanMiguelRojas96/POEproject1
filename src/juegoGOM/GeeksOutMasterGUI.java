@@ -75,17 +75,13 @@ public class GeeksOutMasterGUI extends JFrame{
     panelDadosActivos.setBorder(BorderFactory.createTitledBorder(null ,"DADOS ACTIVOS", TitledBorder.CENTER,
         TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
     setGridConstraint(panelDadosActivos,0,2,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
-    panelDadosActivos.setLayout(new GridBagLayout());
-    GridBagConstraints gbc = new GridBagConstraints();
-    gbc.anchor=GridBagConstraints.CENTER;
-
-
+    panelDadosActivos.setLayout(new FlowLayout(FlowLayout.CENTER,10,35));
 
     dados = new ArrayList<JLabel>();
     imageDado = new ImageIcon(getClass().getResource("/resources/SuperHeroe.PNG"));
     for (int i = 0;i<7;i++){
       dados.add(new JLabel(imageDado));
-      panelDadosActivos.add(dados.get(i),gbc);
+      panelDadosActivos.add(dados.get(i));
     }
 
     panelTarjetaPuntuacion = new PanelImageFondo(setImageBackground("/resources/tarjetonPuntaje.jpg"));
@@ -99,22 +95,21 @@ public class GeeksOutMasterGUI extends JFrame{
     panelDadosInactivos.setPreferredSize(new Dimension(600,300));
     panelDadosInactivos.setBorder(new LineBorder(Color.WHITE, 3));
     setGridConstraint(panelDadosInactivos,0,3,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
-    panelDadosInactivos.setLayout(new GridBagLayout());
+    panelDadosInactivos.setLayout(new FlowLayout(FlowLayout.CENTER,10,60));
 
 
     for (int i = 7;i<10;i++){
       dados.add(new JLabel(imageDado));
       panelDadosInactivos.add(dados.get(i));
       dados.get(i).setName("SuperHeroe");
-      panelDadosInactivos.add(dados.get(i),gbc);
+      panelDadosInactivos.add(dados.get(i));
     }
     panelDadosUsados = new PanelImageFondo(setImageBackground("/resources/dadosUsados.jpg"));
     panelDadosUsados.setName("panelDadosUsados");
     panelDadosUsados.setPreferredSize(new Dimension(600,300));
     panelDadosUsados.setBorder(new LineBorder(Color.WHITE,3));
     setGridConstraint(panelDadosUsados,1,3,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
-    panelDadosUsados.setLayout(new GridBagLayout());
-
+    panelDadosUsados.setLayout(new FlowLayout(FlowLayout.CENTER,10,55));
 
     for(int i=0;i<dados.size();i++){
       dados.get(i).addMouseListener(escucha);
