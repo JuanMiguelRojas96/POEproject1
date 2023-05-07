@@ -2,6 +2,7 @@ package juegoGOM;
 
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,9 +10,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GeeksOutMasterGUI extends JFrame{
 
+  private PanelImageFondo panelImageFondo;
   private Header headerProject;
   private ArrayList<JLabel> dados;
   private JButton lanzar;
@@ -19,7 +22,8 @@ public class GeeksOutMasterGUI extends JFrame{
   private Escucha escucha;
 
   private JPanel panelDadosActivos,panelDadosInactivos,panelDadosUsados,panelTarjetaPuntuacion;
-  private ImageIcon imageDado;
+  private ImageIcon imageDado, background;
+  private Image image;
 
   private ModelGeeksOutMaster modelGeeksOutMaster;
 
@@ -58,19 +62,20 @@ public class GeeksOutMasterGUI extends JFrame{
     setGridConstraint(headerProject,0,0,2,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER);
 
 
+
     lanzar = new JButton("¡Lanzar Dados!");
     lanzar.addActionListener(escucha);
     setGridConstraint(lanzar,0,1,2,GridBagConstraints.NONE,GridBagConstraints.CENTER);
 
 
 
-    panelDadosActivos = new JPanel();
+    panelDadosActivos = new PanelImageFondo(setImageBackground("/resources/mesa.jpg"));
     panelDadosActivos.setName("panelDadosActivos");
     panelDadosActivos.setPreferredSize(new Dimension(600,300));
-    panelDadosActivos.setBorder(BorderFactory.createTitledBorder(null ,"Dados Activos", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Arial",Font.PLAIN,14),Color.BLACK));
+    panelDadosActivos.setBorder(BorderFactory.createTitledBorder(null ,"DADOS ACTIVOS", TitledBorder.CENTER,
+        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
     setGridConstraint(panelDadosActivos,0,2,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
-
+    panelDadosActivos.setLayout(new FlowLayout(FlowLayout.CENTER,10,35));
 
     dados = new ArrayList<JLabel>();
     imageDado = new ImageIcon(getClass().getResource("/resources/SuperHeroe.PNG"));
@@ -79,40 +84,37 @@ public class GeeksOutMasterGUI extends JFrame{
       panelDadosActivos.add(dados.get(i));
     }
 
-
-
-
-    panelTarjetaPuntuacion = new JPanel();
+    panelTarjetaPuntuacion = new PanelImageFondo(setImageBackground("/resources/tarjetonPuntaje.jpg"));
     panelTarjetaPuntuacion.setName("panelTarjetaPuntuacion");
     panelTarjetaPuntuacion.setPreferredSize(new Dimension(600,300));
-    panelTarjetaPuntuacion.setBorder(BorderFactory.createTitledBorder(null ,"Tarjeta de Puntuación", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Arial",Font.PLAIN,14),Color.BLACK));
+    panelTarjetaPuntuacion.setBorder(new LineBorder(Color.WHITE, 3));
     setGridConstraint(panelTarjetaPuntuacion,1,2,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
 
-
-    panelDadosInactivos = new JPanel();
+    panelDadosInactivos = new PanelImageFondo(setImageBackground("/resources/dadosInactivos.jpg"));
     panelDadosInactivos.setName("panelDadosInactivos");
     panelDadosInactivos.setPreferredSize(new Dimension(600,300));
-    panelDadosInactivos.setBorder(BorderFactory.createTitledBorder(null ,"Dados Inactivos", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Arial",Font.PLAIN,14),Color.BLACK));
+    panelDadosInactivos.setBorder(new LineBorder(Color.WHITE, 3));
     setGridConstraint(panelDadosInactivos,0,3,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
+    panelDadosInactivos.setLayout(new FlowLayout(FlowLayout.CENTER,10,60));
+
+
     for (int i = 7;i<10;i++){
       dados.add(new JLabel(imageDado));
       panelDadosInactivos.add(dados.get(i));
+      dados.get(i).setName("SuperHeroe");
+      panelDadosInactivos.add(dados.get(i));
     }
-
-    panelDadosUsados = new JPanel();
+    panelDadosUsados = new PanelImageFondo(setImageBackground("/resources/dadosUsados.jpg"));
     panelDadosUsados.setName("panelDadosUsados");
     panelDadosUsados.setPreferredSize(new Dimension(600,300));
-    panelDadosUsados.setBorder(BorderFactory.createTitledBorder(null ,"Dados Usados", TitledBorder.CENTER,
-        TitledBorder.DEFAULT_JUSTIFICATION , new Font("Arial",Font.PLAIN,14),Color.BLACK));
+    panelDadosUsados.setBorder(new LineBorder(Color.WHITE,3));
     setGridConstraint(panelDadosUsados,1,3,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER);
-
+    panelDadosUsados.setLayout(new FlowLayout(FlowLayout.CENTER,10,55));
 
     for(int i=0;i<dados.size();i++){
       dados.get(i).addMouseListener(escucha);
     }
-
+  //probando
   }
 
 
@@ -125,6 +127,14 @@ public class GeeksOutMasterGUI extends JFrame{
       }
     });
   }
+
+  public Image setImageBackground(String url){
+    background = new ImageIcon(getClass().getResource(url));
+    image = background.getImage();
+    return image;
+  }
+
+
 
 
   public void lanzarDadosActivos(){
@@ -140,7 +150,6 @@ public class GeeksOutMasterGUI extends JFrame{
   }
 
 
-
   public String getPanelDado(Component dado) {
     Container contenedor = this.getContentPane();
     for (Component componente : contenedor.getComponents()) {
@@ -152,6 +161,7 @@ public class GeeksOutMasterGUI extends JFrame{
     }
     return null;
   }
+
 
 
 
@@ -177,13 +187,7 @@ public class GeeksOutMasterGUI extends JFrame{
                 "Por Favor Selecciona Otro.","¡Cara Sin Habilidad!",JOptionPane.INFORMATION_MESSAGE);
         }
       }
-      if(getPanelDado(e.getComponent())=="panelActivos" && modelGeeksOutMaster.getFlag()==2){
-        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
-      }
-      if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==3){
-        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
-      }
-      if (getPanelDado(e.getComponent())=="panelDadosInactivos" && modelGeeksOutMaster.getFlag()==5){
+      if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==2){
         modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
       }
     }
