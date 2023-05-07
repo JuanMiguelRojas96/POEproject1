@@ -7,7 +7,9 @@ public class PanelImageFondo extends JPanel {
     private Image image;
 
     public PanelImageFondo(Image image) {
+
         this.image = image;
+        this.setLayout(new FlowLayout(FlowLayout.CENTER));
     }
     @Override
     public void paintComponent(Graphics g){
