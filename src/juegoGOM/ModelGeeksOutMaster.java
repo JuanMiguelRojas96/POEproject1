@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -38,7 +39,6 @@ public class ModelGeeksOutMaster {
    * 2 = poder Meeple
    * 3 = poder Nave
    * 4 = poder SuperHeroe
-   * 5 = poder Corazon
    */
 
 
@@ -66,12 +66,27 @@ public class ModelGeeksOutMaster {
               "está vacio, no tiene ningun efecto", "¡Está Vacio", JOptionPane.INFORMATION_MESSAGE);
           moverDados(e, panelDadosActivos, panelDadosUsados);
           dadoPoder = e.getComponent().getName();
-          flag = 1;
         }else {
-          moverDados(e, panelDadosActivos, panelDadosUsados);
-          dadoPoder = e.getComponent().getName();
-          flag = 5;
+          moverDados(e,panelDadosActivos,panelDadosUsados);
+
+          Component[] components = panelDadosInactivos.getComponents();
+          ArrayList<JLabel> dadosEnPanel = new ArrayList<>();
+          for (Component component : components) {
+            if (component instanceof JLabel) {
+              dadosEnPanel.add((JLabel) component);
+            }
+          }
+          Random random = new Random();
+          int indice = random.nextInt(dadosEnPanel.size());
+          JLabel labelSeleccionado = dadosEnPanel.get(indice);
+          panelDadosInactivos.remove(labelSeleccionado);
+          panelDadosActivos.add(labelSeleccionado);
+          panelDadosActivos.repaint();
+          panelDadosActivos.revalidate();
+          panelDadosInactivos.repaint();
+          panelDadosInactivos.revalidate();
         }
+        flag = 1;
       }
     }
   }
@@ -111,13 +126,7 @@ public class ModelGeeksOutMaster {
       flag = 1;
 
     }
-    if (dadoPoder=="Corazon" && flag==5 ){
-      moverDados(e,panelDadosInactivos,panelDadosActivos);
-      flag = 1;
-
-    }
   }
-
 
   public void setContraparte(MouseEvent e,String caraOpuesta){
     e.getComponent().setName(caraOpuesta);
