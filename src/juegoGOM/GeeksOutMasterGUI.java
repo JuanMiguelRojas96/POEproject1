@@ -195,15 +195,6 @@ public class GeeksOutMasterGUI extends JFrame{
       if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==2){
         modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
       }
-      if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==3){
-        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
-      }
-      if (getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==4){
-        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
-      }
-      if (getPanelDado(e.getComponent())=="panelDadosInactivos" && modelGeeksOutMaster.getFlag()==5){
-        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
-      }
     }
 
     @Override

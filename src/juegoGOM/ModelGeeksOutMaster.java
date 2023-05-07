@@ -36,9 +36,7 @@ public class ModelGeeksOutMaster {
    * flag=
    * 0 = No se han tirado los dados
    * 1 = Tiro escoge poder
-   * 2 = poder Meeple
-   * 3 = poder Nave
-   * 4 = poder SuperHeroe
+   * 2 = Activar poder
    */
 
 
@@ -53,19 +51,18 @@ public class ModelGeeksOutMaster {
       if (e.getComponent().getName() == "Nave") {
         moverDados(e, panelDadosActivos, panelDadosUsados);
         dadoPoder = e.getComponent().getName();
-        flag = 3;
+        flag = 2;
       }
       if (e.getComponent().getName() == "SuperHeroe") {
         moverDados(e, panelDadosActivos, panelDadosUsados);
         dadoPoder = e.getComponent().getName();
-        flag = 4;
+        flag = 2;
       }
       if (e.getComponent().getName() == "Corazon") {
         if (panelDadosInactivos.getComponentCount() == 0) {
           JOptionPane.showMessageDialog(null, "Como escogiste un Corazón y el Panel de Dados Inactivos " +
               "está vacio, no tiene ningun efecto", "¡Está Vacio", JOptionPane.INFORMATION_MESSAGE);
           moverDados(e, panelDadosActivos, panelDadosUsados);
-          dadoPoder = e.getComponent().getName();
         }else {
           moverDados(e,panelDadosActivos,panelDadosUsados);
 
@@ -102,12 +99,12 @@ public class ModelGeeksOutMaster {
       flag = 1;
     }
 
-    if (dadoPoder=="Nave" && flag==3 ){
+    if (dadoPoder=="Nave" && flag==2 ){
       moverDados(e,panelDadosActivos,panelDadosInactivos);
       flag = 1;
 
     }
-    if (dadoPoder=="SuperHeroe" && flag==4 ){
+    if (dadoPoder=="SuperHeroe" && flag==2 ){
       switch (e.getComponent().getName()){
         case "Meeple":setContraparte(e,"Nave");
           break;
@@ -121,7 +118,6 @@ public class ModelGeeksOutMaster {
           break;
         case "42":setContraparte(e,"Corazon");
           break;
-
       }
       flag = 1;
 
