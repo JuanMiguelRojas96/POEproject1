@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GeeksOutMasterGUI extends JFrame{
 
@@ -168,6 +169,7 @@ public class GeeksOutMasterGUI extends JFrame{
 
 
 
+
   private class Escucha implements ActionListener, MouseListener {
 
     @Override
@@ -191,15 +193,6 @@ public class GeeksOutMasterGUI extends JFrame{
         }
       }
       if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==2){
-        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
-      }
-      if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==3){
-        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
-      }
-      if (getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==4){
-        modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
-      }
-      if (getPanelDado(e.getComponent())=="panelDadosInactivos" && modelGeeksOutMaster.getFlag()==5){
         modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
       }
     }
