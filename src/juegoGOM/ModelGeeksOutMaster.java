@@ -14,7 +14,7 @@ public class ModelGeeksOutMaster {
   private ArrayList<Dado> dados;
   private ArrayList<String> caras;
   private String dadoPoder;
-  private int flag,puntaje;
+  private int flag,puntaje,ronda;
 
 
 
@@ -22,6 +22,7 @@ public class ModelGeeksOutMaster {
   public ModelGeeksOutMaster(){
     puntaje = 0;
     flag = 0;
+    ronda = 1;
     dadoPoder="";
     dados = new ArrayList<Dado>();
     for (int i = 0;i<10;i++){
@@ -142,11 +143,15 @@ public class ModelGeeksOutMaster {
   }
 
   public void verificarPanel(JPanel panelDadosActivos){
+    Component[] componentes = panelDadosActivos.getComponents();
+    System.out.println(componentes.length);
+    if (componentes.length == 0){
+      JOptionPane.showMessageDialog(null,"¡NO SUMAS PUNTOS!.\n"+
+          "No Ha Quedado Ningún Dado","¡NO SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+    }
     if(flag==1){
-      Component[] componentes = panelDadosActivos.getComponents();
       int cantidad42 = 0;
       int cantidadDragon = 0;
-
       for (Component componente : componentes) {
         JLabel label = (JLabel) componente;
         if (label.getName().equals("42")){
@@ -157,7 +162,7 @@ public class ModelGeeksOutMaster {
         }
       }
       if (componentes.length == cantidadDragon+cantidad42){
-        if (cantidadDragon == 1){
+        if (cantidadDragon != 0){
           JOptionPane.showMessageDialog(null,"¡PERDISTE!.\n"+
               "En Los Dados Restantes Hay "+cantidadDragon+" Dragones","¡Hay Un Dragón!",JOptionPane.INFORMATION_MESSAGE);
         }
@@ -211,8 +216,7 @@ public class ModelGeeksOutMaster {
             case 10 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 55 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 55
-                ;
+                puntaje += 55;
               break;
           }
         }
@@ -227,7 +231,6 @@ public class ModelGeeksOutMaster {
   }
 
 
-
   public ArrayList<String> getCaras(){
     return caras;
   }
@@ -235,6 +238,15 @@ public class ModelGeeksOutMaster {
   public int getFlag() {
     return flag;
   }
+
+  public int getPuntaje() {
+    return puntaje;
+  }
+
+  public int getRonda() {
+    return ronda;
+  }
+
   public void setFlag(int i){
     flag = i;
   }

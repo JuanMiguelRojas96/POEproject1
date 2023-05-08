@@ -13,14 +13,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GeeksOutMasterGUI extends JFrame{
-
-  private PanelImageFondo panelImageFondo;
   private Header headerProject;
+  private JLabel puntaje;
   private ArrayList<JLabel> dados;
   private JButton lanzar;
-
   private Escucha escucha;
-
   private JPanel panelDadosActivos,panelDadosInactivos,panelDadosUsados,panelTarjetaPuntuacion;
   private ImageIcon imageDado, background;
   private Image image;
@@ -61,6 +58,15 @@ public class GeeksOutMasterGUI extends JFrame{
     headerProject = new Header("Mesa Geeks Out Master", Color.BLACK);
     setGridConstraint(headerProject,0,0,2,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER);
 
+    puntaje = new JLabel();
+    puntaje.setText("PUNTAJE :"+modelGeeksOutMaster.getPuntaje()+"     RONDA: "+modelGeeksOutMaster.getRonda());
+    puntaje.setBackground(Color.BLACK);
+    puntaje.setForeground(Color.WHITE);
+    puntaje.setFont(new Font("Stencil", Font.BOLD, 30));
+    puntaje.setHorizontalAlignment(JLabel.CENTER);
+    puntaje.setOpaque(true);
+    setGridConstraint(puntaje,0,4,2,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER);
+
 
 
     lanzar = new JButton("¡Lanzar Dados!");
@@ -71,6 +77,7 @@ public class GeeksOutMasterGUI extends JFrame{
 
     panelDadosActivos = new PanelImageFondo(setImageBackground("/resources/mesa.jpg"));
     panelDadosActivos.setName("panelDadosActivos");
+    panelDadosActivos.addMouseListener(escucha);
     panelDadosActivos.setPreferredSize(new Dimension(600,300));
     panelDadosActivos.setBorder(BorderFactory.createTitledBorder(null ,"DADOS ACTIVOS", TitledBorder.CENTER,
         TitledBorder.DEFAULT_JUSTIFICATION , new Font("Stencil",Font.PLAIN+Font.BOLD,20),Color.WHITE));
@@ -114,6 +121,8 @@ public class GeeksOutMasterGUI extends JFrame{
     for(int i=0;i<dados.size();i++){
       dados.get(i).addMouseListener(escucha);
     }
+
+
   //probando
   }
 
@@ -177,7 +186,9 @@ public class GeeksOutMasterGUI extends JFrame{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+      puntaje.setText("PUNTAJE :"+modelGeeksOutMaster.getPuntaje()+"     RONDA: "+modelGeeksOutMaster.getRonda());
       modelGeeksOutMaster.verificarPanel(panelDadosActivos);
+
       if(modelGeeksOutMaster.getFlag()==0){
         JOptionPane.showMessageDialog(null,"Debes de Lanzar Los Dados Primero","¡A Lanzar Los Dados",JOptionPane.INFORMATION_MESSAGE);
       }
