@@ -14,13 +14,14 @@ public class ModelGeeksOutMaster {
   private ArrayList<Dado> dados;
   private ArrayList<String> caras;
   private String dadoPoder;
-  private int flag;
+  private int flag,puntaje;
 
 
 
 
   public ModelGeeksOutMaster(){
-    flag =0;
+    puntaje = 0;
+    flag = 0;
     dadoPoder="";
     dados = new ArrayList<Dado>();
     for (int i = 0;i<10;i++){
@@ -140,6 +141,84 @@ public class ModelGeeksOutMaster {
     nuevoContenedor.repaint();
   }
 
+  public void verificarPanel(JPanel panelDadosActivos){
+    if(flag==1){
+      Component[] componentes = panelDadosActivos.getComponents();
+      int cantidad42 = 0;
+      int cantidadDragon = 0;
+
+      for (Component componente : componentes) {
+        JLabel label = (JLabel) componente;
+        if (label.getName().equals("42")){
+          cantidad42 += 1;
+        }
+        if (label.getName().equals("Dragon")){
+          cantidadDragon += 1;
+        }
+      }
+      if (componentes.length == cantidadDragon+cantidad42){
+        if (cantidadDragon == 1){
+          JOptionPane.showMessageDialog(null,"¡PERDISTE!.\n"+
+              "En Los Dados Restantes Hay "+cantidadDragon+" Dragones","¡Hay Un Dragón!",JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (cantidadDragon == 0 && cantidad42 !=0 ){
+          switch (cantidad42){
+            case 1 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 1 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 1;
+              break;
+            case 2 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 3 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 3;
+              break;
+            case 3 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 6 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 6;
+              break;
+            case 4 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 10 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 10;
+              break;
+            case 5 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 15 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 15;
+              break;
+            case 6 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 21 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 21;
+              break;
+            case 7 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 28 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 28;
+              break;
+            case 8 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 36 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 36;
+              break;
+            case 9 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 45 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 45;
+              break;
+            case 10 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
+                "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
+                "Sumas 55 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+                puntaje += 55
+                ;
+              break;
+          }
+        }
+      }
+    }
+  }
   public void lanzarDados() {
     for(int i = 0; i<10;i++){
       caras.set(i,dados.get(i).getCara());

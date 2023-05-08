@@ -177,6 +177,7 @@ public class GeeksOutMasterGUI extends JFrame{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+      modelGeeksOutMaster.verificarPanel(panelDadosActivos);
       if(modelGeeksOutMaster.getFlag()==0){
         JOptionPane.showMessageDialog(null,"Debes de Lanzar Los Dados Primero","¡A Lanzar Los Dados",JOptionPane.INFORMATION_MESSAGE);
       }
