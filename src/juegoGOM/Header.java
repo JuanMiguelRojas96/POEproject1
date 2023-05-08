@@ -13,4 +13,4 @@ public class Header extends JLabel {
     this.setOpaque(true);
   }
 
-  }
+}
