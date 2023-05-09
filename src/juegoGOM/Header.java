@@ -10,6 +10,7 @@ public class Header extends JLabel {
     this.setForeground(Color.WHITE);
     this.setFont(new Font("Stencil", Font.BOLD, 30));
     this.setHorizontalAlignment(JLabel.CENTER);
+    this.setVerticalAlignment(JLabel.CENTER);
     this.setOpaque(true);
   }
 
