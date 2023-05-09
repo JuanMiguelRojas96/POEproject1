@@ -143,6 +143,27 @@ public class GeeksOutMasterGUI extends JFrame{
     return image;
   }
 
+  private void resetGame() {
+    if (modelGeeksOutMaster.getRonda()==5){
+      JOptionPane.showMessageDialog(null,"El Juego Terminó.\n"+
+          "Tu Puntaje Final Es: "+modelGeeksOutMaster.getPuntaje()+" Puntos." ,"¡Juego Terminado!",JOptionPane.INFORMATION_MESSAGE);
+    }else{
+      Component[] componentes = panelDadosUsados.getComponents();
+      modelGeeksOutMaster.cambiarRonda();
+      modelGeeksOutMaster.setCambioDeRonda(false);
+      lanzar.setVisible(true);
+      modelGeeksOutMaster.setFlag(0);
+      puntaje.setText("PUNTAJE :"+modelGeeksOutMaster.getPuntaje()+"     RONDA: "+modelGeeksOutMaster.getRonda());
+      for (Component component:componentes){
+        panelDadosUsados.remove(component);
+        panelDadosActivos.add(component);
+        panelDadosActivos.revalidate();
+        panelDadosActivos.repaint();
+        panelDadosUsados.revalidate();
+        panelDadosUsados.repaint();
+      }
+    }
+  }
 
 
 
@@ -180,14 +201,16 @@ public class GeeksOutMasterGUI extends JFrame{
     public void actionPerformed(ActionEvent e) {
       if (e.getSource()==lanzar){
         lanzarDadosActivos();
-        //lanzar.setVisible(false);
+        lanzar.setVisible(false);
       }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      puntaje.setText("PUNTAJE :"+modelGeeksOutMaster.getPuntaje()+"     RONDA: "+modelGeeksOutMaster.getRonda());
-      modelGeeksOutMaster.verificarPanel(panelDadosActivos);
+      modelGeeksOutMaster.verificarPanel(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
+      if(modelGeeksOutMaster.getCambioDeRonda()==true){
+        resetGame();
+      }
 
       if(modelGeeksOutMaster.getFlag()==0){
         JOptionPane.showMessageDialog(null,"Debes de Lanzar Los Dados Primero","¡A Lanzar Los Dados",JOptionPane.INFORMATION_MESSAGE);

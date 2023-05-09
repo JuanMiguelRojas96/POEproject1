@@ -15,6 +15,7 @@ public class ModelGeeksOutMaster {
   private ArrayList<String> caras;
   private String dadoPoder;
   private int flag,puntaje,ronda;
+  private boolean cambioDeRonda;
 
 
 
@@ -23,6 +24,7 @@ public class ModelGeeksOutMaster {
     puntaje = 0;
     flag = 0;
     ronda = 1;
+    cambioDeRonda = false;
     dadoPoder="";
     dados = new ArrayList<Dado>();
     for (int i = 0;i<10;i++){
@@ -142,20 +144,23 @@ public class ModelGeeksOutMaster {
     nuevoContenedor.repaint();
   }
 
-  public void verificarPanel(JPanel panelDadosActivos){
+  public void verificarPanel(MouseEvent e,JPanel panelDadosActivos,JPanel panelDadosUsados,JPanel panelDadosInactivos,JPanel panelTarjetaPuntuacion){
     Component[] componentes = panelDadosActivos.getComponents();
-    System.out.println(componentes.length);
     if (componentes.length == 0){
       JOptionPane.showMessageDialog(null,"¡NO SUMAS PUNTOS!.\n"+
           "No Ha Quedado Ningún Dado","¡NO SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
+      cambioDeRonda = true;
     }
     if(flag==1){
       int cantidad42 = 0;
       int cantidadDragon = 0;
+      ArrayList<Component> dados42 = new ArrayList<>();
+      dados42.clear();
       for (Component componente : componentes) {
         JLabel label = (JLabel) componente;
         if (label.getName().equals("42")){
           cantidad42 += 1;
+          dados42.add(componente);
         }
         if (label.getName().equals("Dragon")){
           cantidadDragon += 1;
@@ -165,58 +170,81 @@ public class ModelGeeksOutMaster {
         if (cantidadDragon != 0){
           JOptionPane.showMessageDialog(null,"¡PERDISTE!.\n"+
               "En Los Dados Restantes Hay "+cantidadDragon+" Dragones","¡Hay Un Dragón!",JOptionPane.INFORMATION_MESSAGE);
+          cambioDeRonda = true;
+          puntaje = 0;
         }
         if (cantidadDragon == 0 && cantidad42 !=0 ){
           switch (cantidad42){
             case 1 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 1 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 1;
+              puntaje += 1;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
               break;
             case 2 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 3 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 3;
+              puntaje += 3;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
+
               break;
             case 3 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 6 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 6;
+              puntaje += 6;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
               break;
             case 4 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 10 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 10;
+              puntaje += 10;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
               break;
             case 5 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 15 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 15;
+              puntaje += 15;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
               break;
             case 6 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 21 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 21;
+              puntaje += 21;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
               break;
             case 7 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 28 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 28;
+              puntaje += 28;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
               break;
             case 8 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 36 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 36;
+              puntaje += 36;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
               break;
             case 9 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 45 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 45;
+              puntaje += 45;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
               break;
             case 10 :JOptionPane.showMessageDialog(null,"¡SUMAS PUNTOS!.\n"+
                 "En Los Dados Restantes Hay "+cantidad42+" Caras 42.\n"+
                 "Sumas 55 Punto","¡SUMAS PUNTOS!",JOptionPane.INFORMATION_MESSAGE);
-                puntaje += 55;
+              puntaje += 55;
+              cambioDeRonda = true;
+              moverComponentes(panelDadosActivos,panelTarjetaPuntuacion,componentes);
               break;
           }
         }
@@ -229,7 +257,24 @@ public class ModelGeeksOutMaster {
     }
     flag = 1;
   }
+  public void moverComponentes(JPanel panelActual, JPanel panelDestino, Component[] componentes) {
+    for (Component component : componentes) {
+      panelActual.remove(component);
+      panelDestino.add(component);
+      panelActual.revalidate();
+      panelActual.repaint();
+      panelDestino.revalidate();
+      panelDestino.repaint();
+    }
+  }
 
+  public boolean getCambioDeRonda(){
+    return cambioDeRonda;
+  }
+
+  public void setCambioDeRonda(boolean bool){
+    cambioDeRonda = bool;
+  }
 
   public ArrayList<String> getCaras(){
     return caras;
@@ -245,6 +290,9 @@ public class ModelGeeksOutMaster {
 
   public int getRonda() {
     return ronda;
+  }
+  public void cambiarRonda(){
+    ronda += 1;
   }
 
   public void setFlag(int i){
