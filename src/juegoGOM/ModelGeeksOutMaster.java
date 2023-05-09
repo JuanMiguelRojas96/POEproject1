@@ -67,8 +67,12 @@ public class ModelGeeksOutMaster {
           JOptionPane.showMessageDialog(null, "Como escogiste un Corazón y el Panel de Dados Inactivos " +
               "está vacio, no tiene ningun efecto", "¡Está Vacio", JOptionPane.INFORMATION_MESSAGE);
           moverDados(e, panelDadosActivos, panelDadosUsados);
+          flag = 1;
         }else {
-          moverDados(e,panelDadosActivos,panelDadosUsados);
+          moverDados(e, panelDadosActivos, panelDadosUsados);
+          dadoPoder = e.getComponent().getName();
+          flag = 3;
+          /*moverDados(e,panelDadosActivos,panelDadosUsados);
 
           Component[] components = panelDadosInactivos.getComponents();
           ArrayList<JLabel> dadosEnPanel = new ArrayList<>();
@@ -85,9 +89,8 @@ public class ModelGeeksOutMaster {
           panelDadosActivos.repaint();
           panelDadosActivos.revalidate();
           panelDadosInactivos.repaint();
-          panelDadosInactivos.revalidate();
+          panelDadosInactivos.revalidate();*/
         }
-        flag = 1;
       }
     }
   }
@@ -124,7 +127,15 @@ public class ModelGeeksOutMaster {
           break;
       }
       flag = 1;
-
+    }
+    if (dadoPoder=="Corazon" && flag==3){
+      Dado dadoCorazon = new Dado();
+      String caraDado = dadoCorazon.getCara();
+      e.getComponent().setName(caraDado);
+      ImageIcon imageDado = new ImageIcon(getClass().getResource("/resources/" + caraDado + ".png"));
+      ((JLabel) e.getSource()).setIcon(imageDado);
+      moverDados(e,panelDadosInactivos,panelDadosActivos);
+      flag = 1;
     }
   }
 

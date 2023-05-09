@@ -267,6 +267,9 @@ public class GeeksOutMasterGUI extends JFrame{
       if(getPanelDado(e.getComponent())=="panelDadosActivos" && modelGeeksOutMaster.getFlag()==2){
         modelGeeksOutMaster.estadoPoder(e,panelDadosActivos,panelDadosInactivos);
       }
+      if(getPanelDado(e.getComponent())=="panelDadosInactivos" && modelGeeksOutMaster.getFlag()==3) {
+        modelGeeksOutMaster.estadoPoder(e, panelDadosActivos, panelDadosInactivos);
+      }
     }
 
     @Override
