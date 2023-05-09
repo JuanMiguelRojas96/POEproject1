@@ -267,9 +267,15 @@ public class ModelGeeksOutMaster {
   public int getPuntaje() {
     return puntaje;
   }
+  public void resetPuntaje(){
+    puntaje = 0;
+  }
 
   public int getRonda() {
     return ronda;
+  }
+  public void resetRonda(){
+    ronda = 1;
   }
   public void cambiarRonda(){
     ronda += 1;
