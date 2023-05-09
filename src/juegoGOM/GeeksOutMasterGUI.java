@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,7 +32,7 @@ public class GeeksOutMasterGUI extends JFrame{
   private Header headerProject;
   private JLabel puntaje;
   private ArrayList<JLabel> dados;
-  private JButton lanzar,ayuda,salir;
+  private JButton lanzar,ayuda,salir,reiniciar;
   private Escucha escucha;
   private JPanel panelDadosActivos,panelDadosInactivos,panelDadosUsados,panelTarjetaPuntuacion;
   private ImageIcon imageDado, background;
@@ -85,12 +86,12 @@ public class GeeksOutMasterGUI extends JFrame{
 
 
 
-    lanzar = new JButton("¡Lanzar Dados!");
+    lanzar = new JButton("¡LANZAR DADOS!");
     lanzar.setFont(new Font("Stencil",Font.PLAIN,18));
     lanzar.setForeground(Color.BLACK);
     lanzar.setBackground(Color.WHITE);
     lanzar.addActionListener(escucha);
-    setGridConstraint(lanzar,0,1,2,GridBagConstraints.NONE,GridBagConstraints.CENTER);
+    setGridConstraint(lanzar,0,1,1,GridBagConstraints.NONE,GridBagConstraints.CENTER);
 
     ayuda = new JButton("?");
     ayuda.setFont(new Font("Stencil",Font.PLAIN,18));
@@ -107,6 +108,13 @@ public class GeeksOutMasterGUI extends JFrame{
     salir.setBackground(Color.WHITE);
     salir.addActionListener(escucha);
     setGridConstraint(salir,1,1,1,GridBagConstraints.NONE,GridBagConstraints.LINE_END);
+
+    reiniciar = new JButton("¡REINICIAR!");
+    reiniciar.setFont(new Font("Stencil",Font.PLAIN,18));
+    reiniciar.setForeground(Color.BLACK);
+    reiniciar.setBackground(Color.WHITE);
+    reiniciar.addActionListener(escucha);
+    setGridConstraint(reiniciar,1,1,1,GridBagConstraints.NONE,GridBagConstraints.CENTER);
 
 
 
@@ -179,7 +187,7 @@ public class GeeksOutMasterGUI extends JFrame{
     return image;
   }
 
-  private void resetGame() {
+  private void pasarRonda() {
     if (modelGeeksOutMaster.getRonda()==5){
       JOptionPane.showMessageDialog(null,"El Juego Terminó.\n"+
           "Tu Puntaje Final Es: "+modelGeeksOutMaster.getPuntaje()+" Puntos." ,"¡Juego Terminado!",JOptionPane.INFORMATION_MESSAGE);
@@ -199,6 +207,34 @@ public class GeeksOutMasterGUI extends JFrame{
         panelDadosUsados.repaint();
       }
     }
+  }
+  private void resetPaneles(JPanel panelReset, Component[] components){
+    for (Component component:components){
+      panelReset.remove(component);
+      panelDadosActivos.add(component);
+      panelDadosActivos.revalidate();
+      panelDadosActivos.repaint();
+      panelReset.revalidate();
+      panelReset.repaint();
+    }
+
+  }
+
+  private void resetGame(){
+    Component[] componentesDadosUsados = panelDadosUsados.getComponents();
+    resetPaneles(panelDadosUsados,componentesDadosUsados);
+    Component[] componentesTarjetaPuntuacion = panelTarjetaPuntuacion.getComponents();
+    resetPaneles(panelTarjetaPuntuacion,componentesTarjetaPuntuacion);
+    Component[] componentesDadosInactivos = panelDadosInactivos.getComponents();
+    resetPaneles(panelDadosInactivos,componentesDadosInactivos);
+    Component[] componentesDadosActivos = panelDadosActivos.getComponents();
+    for (int i=0;i<3;i++){
+      panelDadosActivos.remove(componentesDadosActivos[i]);
+      panelDadosInactivos.add(componentesDadosActivos[i]);
+    }
+    modelGeeksOutMaster.resetRonda();
+    modelGeeksOutMaster.resetPuntaje();
+    modelGeeksOutMaster.setFlag(0);
   }
 
 
@@ -245,13 +281,16 @@ public class GeeksOutMasterGUI extends JFrame{
       if (e.getSource()==salir){
         System.exit(0);
       }
+      if (e.getSource()==reiniciar){
+        resetGame();
+      }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
       modelGeeksOutMaster.verificarPanel(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
       if(modelGeeksOutMaster.getCambioDeRonda()==true){
-        resetGame();
+        pasarRonda();
       }
 
       if(modelGeeksOutMaster.getFlag()==0){
