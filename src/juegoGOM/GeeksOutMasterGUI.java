@@ -189,8 +189,13 @@ public class GeeksOutMasterGUI extends JFrame{
 
   private void pasarRonda() {
     if (modelGeeksOutMaster.getRonda()==5){
-      JOptionPane.showMessageDialog(null,"El Juego Terminó.\n"+
-          "Tu Puntaje Final Es: "+modelGeeksOutMaster.getPuntaje()+" Puntos." ,"¡Juego Terminado!",JOptionPane.INFORMATION_MESSAGE);
+      if (modelGeeksOutMaster.getPuntaje()>=30){
+        JOptionPane.showMessageDialog(null,"¡GANASTE!\n"+"\n¡Obtuviste mas de 30 Puntos!"+
+            "\nTu Puntaje Final Es: "+modelGeeksOutMaster.getPuntaje()+" Puntos." ,"¡Juego Terminado!",JOptionPane.INFORMATION_MESSAGE);
+      }else{
+        JOptionPane.showMessageDialog(null,"El Juego Terminó.\n"+
+            "Tu Puntaje Final Es: "+modelGeeksOutMaster.getPuntaje()+" Puntos." ,"¡Juego Terminado!",JOptionPane.INFORMATION_MESSAGE);
+      }
     }else{
       Component[] componentes = panelDadosUsados.getComponents();
       modelGeeksOutMaster.cambiarRonda();
@@ -236,6 +241,7 @@ public class GeeksOutMasterGUI extends JFrame{
     modelGeeksOutMaster.resetRonda();
     modelGeeksOutMaster.resetPuntaje();
     modelGeeksOutMaster.setFlag(0);
+    puntaje.setText("PUNTAJE :"+modelGeeksOutMaster.getPuntaje()+"     RONDA: "+modelGeeksOutMaster.getRonda());
   }
 
 
