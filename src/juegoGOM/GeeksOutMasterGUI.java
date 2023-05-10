@@ -295,7 +295,7 @@ public class GeeksOutMasterGUI extends JFrame{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      modelGeeksOutMaster.verificarPanel(e,panelDadosActivos,panelDadosUsados,panelDadosInactivos,panelTarjetaPuntuacion);
+      modelGeeksOutMaster.verificarPanel(panelDadosActivos,panelTarjetaPuntuacion);
       if(modelGeeksOutMaster.getCambioDeRonda()==true){
         pasarRonda();
       }
