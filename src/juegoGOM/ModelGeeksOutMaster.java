@@ -155,7 +155,7 @@ public class ModelGeeksOutMaster {
     nuevoContenedor.repaint();
   }
 
-  public void verificarPanel(MouseEvent e,JPanel panelDadosActivos,JPanel panelDadosUsados,JPanel panelDadosInactivos,JPanel panelTarjetaPuntuacion){
+  public void verificarPanel(JPanel panelDadosActivos,JPanel panelTarjetaPuntuacion){
     Component[] componentes = panelDadosActivos.getComponents();
     if (componentes.length == 0){
       JOptionPane.showMessageDialog(null,"¡NO SUMAS PUNTOS!.\n"+
