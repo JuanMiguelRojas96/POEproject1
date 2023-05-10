@@ -232,6 +232,7 @@ public class GeeksOutMasterGUI extends JFrame{
       panelDadosActivos.remove(componentesDadosActivos[i]);
       panelDadosInactivos.add(componentesDadosActivos[i]);
     }
+    lanzar.setVisible(true);
     modelGeeksOutMaster.resetRonda();
     modelGeeksOutMaster.resetPuntaje();
     modelGeeksOutMaster.setFlag(0);
