@@ -4,7 +4,7 @@ Welcome to the **GEEKS OF MASTERS** repository! This is a Java-based game projec
 
 ## Project Details
 
-- **Author:** Juan Miguel Rojas
+- **Authors:** Juan Miguel Rojas , Margarita Grisales
 - **Email:** juan.noriega@correounivalle.edu.co
 - **Repository:** [https://github.com/JuanMiguelRojas96/POEproject1.git](https://github.com/JuanMiguelRojas96/POEproject1.git)
 
